@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %} Pet list page{% endblock %}
+{% block content %}
+
+<h4>Current Pets at our agency!</h4>
+
+<!-- <div class="container"> -->
+    <div class="row justify-content-start ">
+{% for pet in pets %}
+
+   
+        <div class="col-sm-2">
+            <img class="img-thumbnail"  src="{{pet.image_url}}" alt="pet image here">
+            <a class="text-success font-weight-bold " href="/{{pet.id}}">{{pet.name}}</a>
+            {% if pet.available %}
+            <p class="text-secondary font-italic">{{pet.format_available()}}</p>
+            {% else %}
+            <p class="text-danger font-italic ">{{pet.format_available()}}</p>
+            {% endif %}
+        </div> 
+    
+
+{% endfor %}
+    </div>
+<!-- </div> -->
+
+
+
+
+<!-- 
+{% for user in users %}
+<div>
+<li> <a href="/users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></li>
+</div>
+{% endfor %} -->
+
+<ul id="messagecontainer"></ul>
+<!-- <button type="button" class="btn btn-primary"><a href="/users/new" class="link-danger">Add User</a></button> commented out for bootstrap formatting --> 
+<p><a class="btn btn-sm btn-primary" href="/new">Add a new pet</a></p> 
+<!-- i dont understand how we get a button out of this without an actual button tag! bootstrap magic -->
+
+<p>Thanks for browsing!</p>
+    
+{%endblock%}

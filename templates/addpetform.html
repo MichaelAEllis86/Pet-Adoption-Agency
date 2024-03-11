@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %} Add a new pet for adoption! {% endblock %}
+{% block content %}
+
+
+
+<div id="petformcontainer" class="container">
+    <h3>Enter a new pet below!</h3>
+    <div id="petformrow" class="row justify-content-left">
+        <div id="petformcol" class="col-md-5">
+            <form id="pet-add-form" method="POST">
+
+            {{pet_form.hidden_tag()}}
+
+            {% for field in pet_form
+            if field.widget.input_type != 'hidden'%}
+
+                <div class="form-group">  
+            {{field.label(class_="text-info font-weight-bold")}}
+            {{field(class_="form-control")}}
+
+            {% for error in field.errors %}
+                    <small class="form-text text-danger">{{error}}</small>
+            
+            {% endfor %}
+                </div>
+            {% endfor %}
+        
+                <button id="petsubmitbtn" class="btn btn-primary" type="submit">Submit</button>
+            </form>
+    </div>
+</div>
+
+
+<ul id="messagecontainer"></ul>
+
+<p>Thanks for browsing!</p>
+    
+{%endblock%}
